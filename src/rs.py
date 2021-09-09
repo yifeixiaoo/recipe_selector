@@ -1,19 +1,26 @@
 import random
 
-ingredients = ["soy sauce", "tomatoes", "noodles", "eggs", "bread", "rice", "kimchi", "onions", "potatoes", "carrots"]
 recipes = []
 class recipe:
-  def __init__(self, name, ingredients):
+  # name: name of recipe
+  # ingredients: must have ingredients
+  # optional: optional ingredients
+  def __init__(self, name, ingredients, optional):
     self.name = name
     self.ingredients = ingredients
+    self.optional = optional
 
-  def addRecipe(self, name, ingredients):
-    currRecipe = recipe(name, ingredients)
+
+
+class recipeList:
+  # List of Recipes
+  def __init__(self):
+    pass
+    # checks if all the ingredients are available in order to make a specific recipe
+  def addRecipe(self, name, ingredients, optional):
+    currRecipe = recipe(name, ingredients, optional)
     recipes.append(currRecipe)
-
-  addRecipe("kimchi fried rice", [])
-
-  # checks if all the ingredients are available in order to make a specific recipe
+    
   def allIngredientsHere(self, allIngredients, recipeIngredients):
     for ingredient in recipeIngredients:
       if ingredient not in allIngredients:
@@ -31,7 +38,7 @@ class recipe:
   # Selects a random recipe out of the list in the "recipes" array
   # only will return a recipe if "ingredients" contains the ingredients needed to make the recipe
   def selectRandomRecipe(self, allIngredients):
-    currRecipes = self.returnAllAvailableRecipes(self, allIngredients)
+    currRecipes = self.returnAllAvailableRecipes(allIngredients)
     randomRecipeNumber = random.randint(0, len(currRecipes) - 1)
+    print(currRecipes[randomRecipeNumber].name)
     return currRecipes[randomRecipeNumber]
-
